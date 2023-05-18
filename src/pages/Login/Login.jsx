@@ -5,7 +5,7 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const [err, setErr] = useState("");
-  const { signIn, loginGoogle } = useContext(AuthContext);
+  const { signIn, signInGoogle } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    //    sign in  emai pass
+    //    sign in  email pass
     signIn(email, password)
       .then((res) => {
         const logedUser = res?.user;
@@ -23,6 +23,17 @@ const Login = () => {
       })
       .catch((error) => setErr(error.message));
   };
+
+  const handlegoogleSignIn = () => {
+    signInGoogle()
+      .then((res) => {
+        const logedUser = res?.user;
+      })
+      .catch((error) => {
+        setErr(error.message);
+      });
+  };
+
   return (
     <div className="md:w-6/12  mx-auto bg-slate-200 rounded-md">
       <h3 className="text-center text-3xl font-bold pt-5 pb-4  ">
@@ -76,7 +87,7 @@ const Login = () => {
           <div className="grid h-20 card bg-base-300 rounded-box place-items-center">
             <div className="flex justify-center space-x-4 -5">
               <button
-                // onClick={handlegoogleSignIn}
+                onClick={handlegoogleSignIn}
                 className="py-2 px-4 border border-gray-400 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 flex items-center gap-2"
               >
                 <FaGoogle></FaGoogle>Sign in with Google

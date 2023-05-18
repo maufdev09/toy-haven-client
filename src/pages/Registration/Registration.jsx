@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
-  const { createUser, signInGoogle } = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [photoURL, setphotoURL] = useState("");
   const [err, setErr] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,6 +32,7 @@ const RegisterForm = () => {
         const newUser = result?.user;
         console.log(` new user${newUser}`);
         console.log(result);
+        navigate("/");
       })
       .catch((error) => {
         setErr(error.message);

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const [err, setErr] = useState("");
@@ -20,6 +20,7 @@ const Login = () => {
       .then((res) => {
         const logedUser = res?.user;
         console.log(logedUser);
+        navigate(from, { replace: true });
       })
       .catch((error) => setErr(error.message));
   };
@@ -28,6 +29,7 @@ const Login = () => {
     signInGoogle()
       .then((res) => {
         const logedUser = res?.user;
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setErr(error.message);

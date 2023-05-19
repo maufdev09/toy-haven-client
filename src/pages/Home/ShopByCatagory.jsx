@@ -1,20 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
+import CarsCart from "./CarsCart";
+// import CarsCart from "./CarsCart"; // Assuming it's not used in this snippet
 
 const ShopByCategory = () => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [cars, setCars] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
   const categories = [
-    "Sports Car",
-    "Truck",
-    "Regular Car",
-    "Mini Fire Truck",
-    "Mini Police Car",
+    { value: "all", label: "All Cars" },
+    { value: "sportsCar", label: "Sports Car" },
+    { value: "truck", label: "Truck" },
+    { value: "regularCar", label: "Regular Car" },
+    { value: "miniFireTruck", label: "Mini Fire Truck" },
+    { value: "miniPoliceCar", label: "Mini Police Car" },
   ];
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/allcars/${selectedCategory}`)
+      .then((res) => res.json())
+      .then((data) => setCars(data));
+  }, [selectedCategory]);
+
+  console.log(selectedCategory);
+
   const handleCategoryChange = (selectedOption) => {
-    setSelectedCategory(selectedOption.va);
-    console.log(selectedCategory);
+    setSelectedCategory(selectedOption.value);
   };
+
+  //   useEffect(() => {
+  //     setSelectedCategory(categories[0].value);
+  //   }, []); // Run only once on component mount to initialize selectedCategory
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -22,22 +38,18 @@ const ShopByCategory = () => {
       <div className="flex items-center justify-between mb-4">
         <div className="w-64">
           <Select
-            className=" bg-red-500"
-            value={selectedCategory}
+            value={categories.find((c) => c.value === selectedCategory)}
             onChange={handleCategoryChange}
-            options={categories.map((category) => ({
-              value: category,
-              label: category,
-            }))}
+            options={categories}
             placeholder="Select Category"
           />
         </div>
-        <button className="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600">
-          View Products
-        </button>
+        <button className="btn btn-primary">View Products</button>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {/* Render products based on selected category */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4  ">
+        {cars.map((car) => (
+          <CarsCart key={car._id} car={car}></CarsCart>
+        ))}
       </div>
     </div>
   );

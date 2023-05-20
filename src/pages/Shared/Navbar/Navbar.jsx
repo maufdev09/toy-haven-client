@@ -43,7 +43,7 @@ const Navbar = () => {
               <Link to="alltoys">All Toys</Link>
             </li>
             <li>
-              <Link>My Toys</Link>
+              <Link to="mytoys">My Toys</Link>
             </li>
             <li>
               <Link to="addatoy">Add A Toys</Link>
@@ -64,7 +64,7 @@ const Navbar = () => {
             <Link to="alltoys">All Toys</Link>
           </li>
           <li>
-            <Link>My Toys</Link>
+            <Link to="mytoys">My Toys</Link>
           </li>
           <li>
             <Link to="addatoy">Add A Toys</Link>

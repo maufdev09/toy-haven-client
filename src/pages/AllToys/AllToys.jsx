@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 // import axios from "axios";
 // import { data } from "autoprefixer";
 
 const AllToys = () => {
   const [toys, setToys] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [limit, setLimit] = useState(20);
+  //   const [limit, setLimit] = useState(20);
 
   useEffect(() => {
     fetch("http://localhost:5000/allcars?limit=20")
@@ -23,7 +24,7 @@ const AllToys = () => {
 
   return (
     <div className="container mx-auto mt-8">
-      <h1 className="text-2xl font-bold mb-4">All Toys</h1>
+      <h1 className="text-4xl font-bold mb-7 text-center">All Toys</h1>
 
       <div className="mb-4 btn-group">
         <input
@@ -41,7 +42,7 @@ const AllToys = () => {
         </button>
       </div>
 
-      <table className="w-full border border-gray-300">
+      <table className="w-full border border-gray-300 mb-5">
         <thead>
           <tr className="bg-gray-100">
             <th className="py-2 px-4 border-b">Seller</th>
@@ -61,12 +62,9 @@ const AllToys = () => {
               <td className="py-2 px-4 border-b">{toy.price}</td>
               <td className="py-2 px-4 border-b">{toy.quantity}</td>
               <td className="py-2 px-4 border-b">
-                <button
-                  className="text-blue-600 underline focus:outline-none"
-                  //   onClick={() => handleViewDetails(toy.id)}
-                >
+                <Link to={`/toy/${toy._id}`} className=" btn btn-primary">
                   View Details
-                </button>
+                </Link>
               </td>
             </tr>
           ))}

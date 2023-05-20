@@ -17,7 +17,7 @@ const ShopByCategory = () => {
   ];
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allcars/${selectedCategory}`)
+    fetch(`http://localhost:5000/allcars/category/${selectedCategory}`)
       .then((res) => res.json())
       .then((data) => setCars(data));
   }, [selectedCategory]);

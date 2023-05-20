@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CarsCart = ({ car }) => {
   console.log(car);
@@ -27,7 +28,9 @@ const CarsCart = ({ car }) => {
           <span className="text-yellow-500">{car.rating}.00</span>
         </div>
         <div className="card-actions ">
-          <button className=" btn btn-primary">View Details</button>
+          <Link to={`/toy/${car._id}`} className=" btn btn-primary">
+            View Details
+          </Link>
         </div>
       </div>
     </div>

@@ -35,6 +35,9 @@ const ShopByCategory = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <h3 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center mb-10">
+        Buy Cars
+      </h3>
       <h2 className="text-2xl font-bold mb-4">Shop by Category - Toy Cars</h2>
       <div className="flex items-center justify-between mb-4">
         <div className="w-64">

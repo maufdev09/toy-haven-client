@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const CarsCart = ({ car }) => {
-  console.log(car);
+  // console.log(car);
   return (
     <div className="card w-full -200  shadow-2xl">
       <figure className="w-full ">

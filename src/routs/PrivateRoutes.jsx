@@ -13,11 +13,17 @@ const PrivateRoutes = ({ children }) => {
       </div>
     );
   }
+
   if (user) {
     return children;
+  } else {
+    if (confirm("You have to log in first to view details") === true) {
+      return (
+        <Navigate state={{ from: location }} to="/login" replace></Navigate>
+      );
+    }
+    return;
   }
-
-  return <Navigate state={{ from: location }} to="/login" replace></Navigate>;
 };
 
 export default PrivateRoutes;

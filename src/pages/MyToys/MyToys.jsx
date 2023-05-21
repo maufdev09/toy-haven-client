@@ -13,7 +13,7 @@ const MyToys = () => {
   // const [limit, setLimit] = useState(20);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/mycars/${user?.email}`)
+    fetch(`https://toy-haven-production.up.railway.app/mycars/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setToys(data));
   }, [user]);
@@ -21,14 +21,16 @@ const MyToys = () => {
   const handleSearch = () => {
     console.log(searchTerm);
 
-    fetch(`http://localhost:5000/allcars/${searchTerm}?limit=20`)
+    fetch(
+      `https://toy-haven-production.up.railway.app/allcars/${searchTerm}?limit=20`
+    )
       .then((res) => res.json())
       .then((data) => setToys(data));
   };
 
   const handleToyUpdate = (data) => {
     // console.log(data);
-    fetch(`http://localhost:5000/updatejob/${data._id}`, {
+    fetch(`https://toy-haven-production.up.railway.app/updatejob/${data._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -44,7 +46,7 @@ const MyToys = () => {
 
   const handleDelete = (toyId) => {
     if (confirm("Are you sure You Want to Delete it") == true) {
-      fetch(`http://localhost:5000/deletecar/${toyId}`, {
+      fetch(`https://toy-haven-production.up.railway.app/deletecar/${toyId}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -64,7 +66,9 @@ const MyToys = () => {
     setSortOrder(newSortOrder);
     console.log(sortOrder);
 
-    fetch(`http://localhost:5000/mycar/${user?.email}?sort=${sortOrder}`)
+    fetch(
+      `https://toy-haven-production.up.railway.app/mycar/${user?.email}?sort=${sortOrder}`
+    )
       .then((res) => res.json())
       .then((data) => setToys(data))
       .catch((error) => console.log(error));

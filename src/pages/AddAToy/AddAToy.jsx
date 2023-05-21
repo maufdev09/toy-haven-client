@@ -11,7 +11,7 @@ const AddAToy = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    fetch("http://localhost:5000/posttoys", {
+    fetch("https://toy-haven-production.up.railway.app/posttoys", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

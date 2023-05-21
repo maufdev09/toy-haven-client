@@ -60,7 +60,8 @@ const router = createBrowserRouter([
             <DetailsToy></DetailsToy>
           </PrivateRoutes>
         ),
-        loader: ({ params }) => fetch(`http://localhost:5000/toy/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`https://toy-haven-production.up.railway.app/toy/${params.id}`),
       },
     ],
   },

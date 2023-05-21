@@ -17,7 +17,9 @@ const ShopByCategory = () => {
   ];
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allcars/category/${selectedCategory}`)
+    fetch(
+      `https://toy-haven-production.up.railway.app/allcars/category/${selectedCategory}`
+    )
       .then((res) => res.json())
       .then((data) => setCars(data));
   }, [selectedCategory]);

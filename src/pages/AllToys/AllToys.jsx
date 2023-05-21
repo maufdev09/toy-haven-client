@@ -9,7 +9,7 @@ const AllToys = () => {
   //   const [limit, setLimit] = useState(20);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allcars?limit=20")
+    fetch("https://toy-haven-production.up.railway.app/allcars?limit=20")
       .then((res) => res.json())
       .then((data) => setToys(data));
   }, []);
@@ -17,7 +17,9 @@ const AllToys = () => {
   const handleSearch = () => {
     console.log(searchTerm);
 
-    fetch(`http://localhost:5000/allcars/${searchTerm}?limit=20`)
+    fetch(
+      `https://toy-haven-production.up.railway.app/allcars/${searchTerm}?limit=20`
+    )
       .then((res) => res.json())
       .then((data) => setToys(data));
   };

@@ -53,10 +53,14 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a href="/" className="btn btn-ghost normal-case  text-2xl font-bold">
+        <a href="/" className=" flex  items-center  normal-case   ">
           {" "}
-          <img className="w-10" src="Toy haven-logos_black.png" alt="" />{" "}
-          ToyHaven
+          <img
+            className="md:w-10 max-sm:w-7"
+            src="Toy haven-logos_black.png"
+            alt=""
+          />{" "}
+          <p className=" max-sm:hidden text-2xl font-bold    ">ToyHaven</p>
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -87,17 +91,17 @@ const Navbar = () => {
             {user.photoURL ? (
               <img src={user.photoURL} className="rounded-full" />
             ) : (
-              <FaUserCircle className="text-4xl mx-3" />
+              <FaUserCircle className="text-4xl max-sm:text-2xl mx-3" />
             )}
           </div>
         )}
 
         {user ? (
-          <button className="btn" onClick={handleLogOut}>
+          <button className="btn max-sm:btn-sm" onClick={handleLogOut}>
             Logout
           </button>
         ) : (
-          <Link className="btn" to="/login">
+          <Link className="btn max-sm:btn-sm " to="/login">
             Login
           </Link>
         )}

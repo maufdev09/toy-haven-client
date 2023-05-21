@@ -48,9 +48,8 @@ const ShopByCategory = () => {
             placeholder="Select Category"
           />
         </div>
-        <button className="btn btn-primary">View Products</button>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4  ">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4  ">
         {cars.map((car) => (
           <CarsCart key={car._id} car={car}></CarsCart>
         ))}

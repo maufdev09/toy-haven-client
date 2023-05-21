@@ -8,7 +8,9 @@ const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [toys, setToys] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  //   const [limit, setLimit] = useState(20);
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  // const [limit, setLimit] = useState(20);
 
   useEffect(() => {
     fetch(`http://localhost:5000/mycars/${user?.email}`)
@@ -25,7 +27,47 @@ const MyToys = () => {
   };
 
   const handleToyUpdate = (data) => {
-    console.log(data);
+    // console.log(data);
+    fetch(`http://localhost:5000/updatejob/${data._id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          alert("Updated successfully");
+        }
+      });
+  };
+
+  const handleDelete = (toyId) => {
+    if (confirm("Are you sure You Want to Delete it") == true) {
+      fetch(`http://localhost:5000/deletecar/${toyId}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            // Filter out the deleted toy from the local state
+            setToys(toys.filter((toy) => toy._id !== toyId));
+            alert("Deleted successfully");
+          }
+        });
+    } else {
+      return;
+    }
+  };
+  const handleSort = (event) => {
+    const newSortOrder = event.target.value;
+    setSortOrder(newSortOrder);
+    console.log(sortOrder);
+
+    fetch(`http://localhost:5000/mycar/${user?.email}?sort=${sortOrder}`)
+      .then((res) => res.json())
+      .then((data) => setToys(data))
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -52,7 +94,17 @@ const MyToys = () => {
           </button>
         </div>
 
-        <h3 className="text-2xl font-bold">Email: {user?.email}</h3>
+        <div className="mb-4 flex items-center">
+          <select
+            id="sortOrder"
+            value={sortOrder}
+            onChange={handleSort}
+            className="px-4 py-2 border border-indigo-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200 text-lg"
+          >
+            <option value="asc"> Price Low to High</option>
+            <option value="desc"> Price High to Low</option>
+          </select>
+        </div>
       </div>
       <table className="w-full border border-gray-300 mb-5">
         <thead>
@@ -86,7 +138,12 @@ const MyToys = () => {
                 {/* <button className="btn btn-outline btn-primary"></button> */}
               </td>
               <td className="py-2 px-4 border-b">
-                <button className="btn btn-outline btn-error">Delete</button>
+                <button
+                  onClick={() => handleDelete(toy?._id)}
+                  className="btn btn-outline btn-error"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

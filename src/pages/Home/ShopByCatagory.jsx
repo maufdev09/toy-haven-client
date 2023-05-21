@@ -26,6 +26,7 @@ const ShopByCategory = () => {
 
   const handleCategoryChange = (selectedOption) => {
     setSelectedCategory(selectedOption.value);
+    console.log(selectedOption.value);
   };
 
   //   useEffect(() => {

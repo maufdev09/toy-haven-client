@@ -18,7 +18,7 @@ const ShopByCategory = () => {
 
   useEffect(() => {
     fetch(
-      `https://toy-haven-production.up.railway.app/allcars/category/${selectedCategory}`
+      `https://b7a11-toy-marketplace-server-side-maufdev09-ojytxsx64-maufdev09.vercel.app/allcars/category/${selectedCategory}`
     )
       .then((res) => res.json())
       .then((data) => setCars(data));

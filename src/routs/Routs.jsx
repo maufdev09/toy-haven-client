@@ -61,7 +61,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`https://toy-haven-production.up.railway.app/toy/${params.id}`),
+          fetch(`https://b7a11-toy-marketplace-server-side-maufdev09-ojytxsx64-maufdev09.vercel.app/toy/${params.id}`),
       },
     ],
   },

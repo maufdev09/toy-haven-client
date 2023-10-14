@@ -13,7 +13,7 @@ const MyToys = () => {
   // const [limit, setLimit] = useState(20);
 
   useEffect(() => {
-    fetch(`https://toy-haven-production.up.railway.app/mycars/${user?.email}`)
+    fetch(`https://b7a11-toy-marketplace-server-side-maufdev09-ojytxsx64-maufdev09.vercel.app/mycars/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setToys(data));
   }, [user]);
@@ -22,7 +22,7 @@ const MyToys = () => {
     console.log(searchTerm);
 
     fetch(
-      `https://toy-haven-production.up.railway.app/allcars/${searchTerm}?limit=20`
+      `https://b7a11-toy-marketplace-server-side-maufdev09-ojytxsx64-maufdev09.vercel.app/allcars/${searchTerm}?limit=20`
     )
       .then((res) => res.json())
       .then((data) => setToys(data));
@@ -30,7 +30,7 @@ const MyToys = () => {
 
   const handleToyUpdate = (data) => {
     // console.log(data);
-    fetch(`https://toy-haven-production.up.railway.app/updatejob/${data._id}`, {
+    fetch(`https://b7a11-toy-marketplace-server-side-maufdev09-ojytxsx64-maufdev09.vercel.app/updatejob/${data._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -46,7 +46,7 @@ const MyToys = () => {
 
   const handleDelete = (toyId) => {
     if (confirm("Are you sure You Want to Delete it") == true) {
-      fetch(`https://toy-haven-production.up.railway.app/deletecar/${toyId}`, {
+      fetch(`https://b7a11-toy-marketplace-server-side-maufdev09-ojytxsx64-maufdev09.vercel.app/deletecar/${toyId}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -67,7 +67,7 @@ const MyToys = () => {
     console.log(sortOrder);
 
     fetch(
-      `https://toy-haven-production.up.railway.app/mycar/${user?.email}?sort=${sortOrder}`
+      `https://b7a11-toy-marketplace-server-side-maufdev09-ojytxsx64-maufdev09.vercel.app/mycar/${user?.email}?sort=${sortOrder}`
     )
       .then((res) => res.json())
       .then((data) => setToys(data))

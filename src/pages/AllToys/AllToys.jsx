@@ -9,7 +9,7 @@ const AllToys = () => {
   //   const [limit, setLimit] = useState(20);
 
   useEffect(() => {
-    fetch("https://toy-haven-production.up.railway.app/allcars?limit=20")
+    fetch("https://b7a11-toy-marketplace-server-side-maufdev09-ojytxsx64-maufdev09.vercel.app/allcars?limit=20")
       .then((res) => res.json())
       .then((data) => setToys(data));
   }, []);
@@ -18,7 +18,7 @@ const AllToys = () => {
     console.log(searchTerm);
 
     fetch(
-      `https://toy-haven-production.up.railway.app/allcars/${searchTerm}?limit=20`
+      `https://b7a11-toy-marketplace-server-side-maufdev09-ojytxsx64-maufdev09.vercel.app/allcars/${searchTerm}?limit=20`
     )
       .then((res) => res.json())
       .then((data) => setToys(data));

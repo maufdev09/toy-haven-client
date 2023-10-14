@@ -11,7 +11,7 @@ const AddAToy = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    fetch("https://toy-haven-production.up.railway.app/posttoys", {
+    fetch("https://b7a11-toy-marketplace-server-side-maufdev09-ojytxsx64-maufdev09.vercel.app/posttoys", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
